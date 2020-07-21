@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>Covidometer-19 | India</title>
-  <base href="https://punit3299.github.io/covidometer/">  <meta name="viewport" content="width=850px, initial-scale=1.0" &gt>
+  <base href="https://punit3299.github.io/covidometer/">  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="icon" type="image/x-icon" href="/assets/virus1.jpg">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,14 +12,14 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 
   <style type="text/css">
     * {
       margin: 0;
       padding: 0;
       font-family: 'Josefin Sans', sans-serif;
-    }    
-    
+    }
   </style>
 
 <link rel="stylesheet" href="styles.3ff695c00d717f2d2a11.css"></head>
@@ -28,6 +28,53 @@
 
   <app-root></app-root>
 
+
+  <script>
+    // ---------Responsive-navbar-active-animation-----------
+    function test() {
+      var tabsNewAnim = $('#navbarSupportedContent');
+      var selectorNewAnim = $('#navbarSupportedContent').find('li').length;
+      var activeItemNewAnim = tabsNewAnim.find('.active');
+      var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
+      var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
+      var itemPosNewAnimTop = activeItemNewAnim.position();
+      var itemPosNewAnimLeft = activeItemNewAnim.position();
+      $(".hori-selector").css({
+        "top": itemPosNewAnimTop.top + "px",
+        "left": itemPosNewAnimLeft.left + "px",
+        "height": activeWidthNewAnimHeight + "px",
+        "width": activeWidthNewAnimWidth + "px"
+      });
+      $("#navbarSupportedContent").on("click", "li", function (e) {
+        $('#navbarSupportedContent ul li').removeClass("active");
+        $(this).addClass('active');
+        var activeWidthNewAnimHeight = $(this).innerHeight();
+        var activeWidthNewAnimWidth = $(this).innerWidth();
+        var itemPosNewAnimTop = $(this).position();
+        var itemPosNewAnimLeft = $(this).position();
+        $(".hori-selector").css({
+          "top": itemPosNewAnimTop.top + "px",
+          "left": itemPosNewAnimLeft.left + "px",
+          "height": activeWidthNewAnimHeight + "px",
+          "width": activeWidthNewAnimWidth + "px"
+        });
+      });
+    }
+    $(document).ready(function () {
+      setTimeout(function () { test(); });
+    });
+    $(window).on('resize', function () {
+      setTimeout(function () { test(); }, 500);
+    });
+    $(".navbar-toggler").click(function () {
+      setTimeout(function () { test(); });
+    });
+
+
+
+
+    
+  </script>
 
   <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -41,6 +88,6 @@
     crossorigin="anonymous"></script>
 
 
-<script src="runtime-es2015.c5fa8325f89fc516600b.js" type="module"></script><script src="runtime-es5.c5fa8325f89fc516600b.js" nomodule defer></script><script src="polyfills-es5.3e8196928d184a6e5319.js" nomodule defer></script><script src="polyfills-es2015.5b10b8fd823b6392f1fd.js" type="module"></script><script src="main-es2015.fd7db1dd229886dc14ca.js" type="module"></script><script src="main-es5.fd7db1dd229886dc14ca.js" nomodule defer></script></body>
+<script src="runtime-es2015.c5fa8325f89fc516600b.js" type="module"></script><script src="runtime-es5.c5fa8325f89fc516600b.js" nomodule defer></script><script src="polyfills-es5.3e8196928d184a6e5319.js" nomodule defer></script><script src="polyfills-es2015.5b10b8fd823b6392f1fd.js" type="module"></script><script src="main-es2015.d767dde9f4dcc2fc684f.js" type="module"></script><script src="main-es5.d767dde9f4dcc2fc684f.js" nomodule defer></script></body>
 
 </html>
