@@ -6,4 +6,3 @@ Covidometer is a web-based application which tracks the real-time live data of a
 Technology Stack : Angular 8, Restful Web Services, Chart.js
 
 Website Link : https://punit3299.github.io/covidometer/
->>>>>>> f2c04c6f9973cdd7cc667c22036e5cad8c65b588
