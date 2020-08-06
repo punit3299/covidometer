@@ -1,0 +1,38 @@
+span :hover{
+  cursor: pointer;
+}
+   
+.results tr[visible='false'],
+.no-result{
+  display:none;
+}
+
+.results tr[visible='true']{
+  display:table-row;
+}
+
+.counter{
+  padding:8px; 
+  color:#ccc;
+}
+ 
+@media only screen and (max-width: 600px) {
+  thead {
+    display: none; 
+  }
+  tr{
+    margin-top: 15%;
+  }
+  #districtname{
+    text-align: center;
+  }
+  #index{
+    display: none;
+  }
+  #district{
+    border: 1px solid lightgrey;
+  }
+  .statusType{
+    display: inline;
+  }
+}

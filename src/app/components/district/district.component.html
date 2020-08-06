@@ -1,0 +1,64 @@
+<div class="animated">
+
+    <section class="pt-4 mx-auto w-100 mb-8">
+        <div class="container-fluid text-center">
+            <div class="text-xl"><b class="cursor-pointer hover:underline">{{currentState}}</b></div>
+            <h6 class="text-success mt-2">Last Updated : {{stateData.lastupdatedtime}}</h6>
+        </div>
+ 
+        <div class="row container-fluid text-center pt-4 mx-auto">
+            <div class="col-lg-3 col-md-3 col-6">
+                <div class="card-counter danger transform hover:scale-105" routerLink="/chart">
+                    <span class="count-numbers">{{stateData.confirmed}}</span>
+                    <span class="count-name">Confirmed : </span>
+                </div>
+                <div class="text-center pt-2 cursor-pointer transform hover:scale-105">
+                    <span class="text-danger" style="font-size: 24px;">
+                        <i class="fa fa-line-chart"></i>&nbsp;{{stateData.deltaconfirmed}}
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-6">
+                <div class="card-counter primary transform hover:scale-105" routerLink="/chart">
+                    <span class="count-numbers">{{stateData.active}}</span>
+                    <span class="count-name">Active : </span>
+                </div>
+                <div class="text-center pt-2 cursor-pointer transform hover:scale-105">
+                    <span class="text-primary" style="font-size: 24px;">
+                        <i class="fa fa-line-chart"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-6">
+                <div class="card-counter success transform hover:scale-105" routerLink="/chart">
+                    <span class="count-numbers">{{stateData.recovered}}</span>
+                    <span class="count-name">Recovered : </span>
+                </div>
+                <div class="text-center pt-2 cursor-pointer transform hover:scale-105">
+                    <span class="text-success" style="font-size: 24px;">
+                        <i class="fa fa-line-chart"></i>&nbsp;{{stateData.deltarecovered}}
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-6" >
+                <div class="card-counter info transform hover:scale-105" routerLink="/chart">
+                    <span class="count-numbers">{{stateData.deaths}}</span>
+                    <span class="count-name">Deaths : </span>
+                </div>
+                <div class="text-center pt-2 cursor-pointer transform hover:scale-105">
+                    <span class="text-danger" style="font-size: 24px;">
+                        <i class="fa fa-line-chart"></i> {{stateData.deltadeaths}}
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <hr>
+
+    <router-outlet></router-outlet>
+  
+</div>

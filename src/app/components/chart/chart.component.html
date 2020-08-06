@@ -1,0 +1,32 @@
+<div class="animated xl:pb-8 mx-4">
+    <h3 class="xl:text-2xl text-lg mt-4 text-center">
+        <b class="cursor-pointer hover:underline">India - Stats on Covid-19</b>
+    </h3>
+    <div class="row container fluid mx-auto">
+        <div class="col-lg-6 mt-4">
+            <canvas id="canvas"></canvas>
+        </div>
+        <div class="col-lg-6 mt-4">
+            <canvas id="canvas1"></canvas>
+        </div>
+    </div>  
+    <div class="row container fluid" style="margin:auto;">
+        <div class="col-lg-6 mt-5">
+            <canvas id="canvas2"></canvas>
+        </div>
+        <div class="col-lg-6 mt-5">
+            <canvas id="canvas3"></canvas>
+        </div>
+    </div>
+    <div class="row container fluid" style="margin:auto;">
+        <div class="col-lg-6 mt-5">
+            <canvas id="pieChart"></canvas>
+        </div>
+
+        <div class="col-lg-6 mt-5">
+            <canvas id="barChart"></canvas>
+        </div>
+    </div>
+</div>  
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>

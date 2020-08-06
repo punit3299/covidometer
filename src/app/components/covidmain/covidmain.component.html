@@ -1,0 +1,177 @@
+<!-- Total Data -->
+<div class="animated mb-8">
+    <section class="pt-4 mx-auto w-100 mb-8">
+        <div class="container-fluid text-center">
+            <div class="mx-auto text-xl">
+                <b class="cursor-pointer hover:underline">India COVID-19 Tracker</b>
+            </div>
+            <h6 class="text-success mt-3">Last Updated : {{covidData.statewise[0].lastupdatedtime}}</h6>
+        </div>
+
+        <div class="row container-fluid text-center pt-4 mx-auto">
+            <div class="col-lg-3 col-md-3 col-6">
+                <div class="card-counter danger transform hover:scale-105">
+                    <span class="count-numbers text-white">{{confirmed}}</span>
+                    <span class="count-name">Confirmed : </span>
+                </div>
+                <div class="text-center pt-2 transform hover:scale-105 cursor-pointer" routerLink="/chart">
+                    <span class="text-danger" style="font-size: 24px;">
+                        <i class="fa fa-line-chart"></i>&nbsp;{{deltaConfirmed}}
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-6">
+                <div class="card-counter primary transform hover:scale-105">
+                    <span class="count-numbers text-white">{{active}}</span>
+                    <span class="count-name">Active : </span>
+                </div>
+                <div class="text-center pt-2 transform hover:scale-105 cursor-pointer" routerLink="/chart">
+                    <span class="text-primary" style="font-size: 24px;">
+                        <i class="fa fa-line-chart"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-6">
+                <div class="card-counter success transform hover:scale-105">
+                    <span class="count-numbers text-white">{{recovered}}</span>
+                    <span class="count-name">Recovered : </span>
+                </div>
+                <div class="text-center pt-2 transform hover:scale-105 cursor-pointer" routerLink="/chart">
+                    <span class="text-success" style="font-size: 24px;">
+                        <i class="fa fa-line-chart"></i>&nbsp;{{deltaRecovered}}
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-6">
+                <div class="card-counter info transform hover:scale-105">
+                    <span class="count-numbers text-white">{{deaths}}</span>
+                    <span class="count-name">Deaths : </span>
+                </div>
+                <div class="text-center pt-2 transform hover:scale-105 cursor-pointer" routerLink="/chart">
+                    <span class="text-danger" style="font-size: 24px;">
+                        <i class="fa fa-line-chart"></i> {{deltaDeaths}}
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <hr>
+
+    <div class="pt-4 my-3">
+        <h3 class="text-center  text-xl cursor-pointer hover:underline"><b>StateWise COVID-19 Cases</b></h3>
+
+        <!-- StateWise Data -->
+
+        <div class="form-group xl:w-1/4 w-1/2 mx-auto mt-4">
+            <input type="text" class="search form-control" placeholder="Search a State" [(ngModel)]="state">
+        </div>
+    </div>
+    <table class="table table-hover w-75 mx-auto results xl:mt-8 -my-4">
+        <thead>
+            <tr class="row">
+                <th class="col-sm-1 text-center">#</th>
+                <th class="col-sm-3">
+                    <span class="hover:opacity-75">State</span>
+                </th>
+                <th class="col-sm-2 text-center ">
+                    <span class="hover:opacity-75">Confirmed </span>
+                    <span *ngIf="!flag" (click)="sortByConfirmedUp()"><i
+                            class="fa fa-arrow-up transform hover:scale-110"></i></span>
+                    <span *ngIf="flag" (click)="sortByConfirmedDown()"><i
+                            class="fa fa-arrow-down transform hover:scale-110"></i></span>
+                </th>
+                <th class="col-sm-2 text-center ">
+                    <span class="hover:opacity-75">Active </span>
+                    <span *ngIf="!flag" (click)="sortByActiveUp()"><i
+                            class="fa fa-arrow-up transform hover:scale-110"></i></span>
+                    <span *ngIf="flag" (click)="sortByActiveDown()"><i
+                            class="fa fa-arrow-down transform hover:scale-110"></i></span>
+                </th>
+                <th class="col-sm-2 text-center ">
+                    <span class="hover:opacity-75">Recovered </span>
+                    <span *ngIf="!flag" (click)="sortByRecoveredUp()"><i
+                            class="fa fa-arrow-up transform hover:scale-110"></i></span>
+                    <span *ngIf="flag" (click)="sortByRecoveredDown()"><i
+                            class="fa fa-arrow-down transform hover:scale-110"></i></span>
+                </th>
+                <th class="col-sm-2 text-center ">
+                    <span class="hover:opacity-75">Deaths </span>
+                    <span *ngIf="!flag" (click)="sortByDeathsUp()"><i
+                            class="fa fa-arrow-up transform hover:scale-110"></i></span>
+                    <span *ngIf="flag" (click)="sortByDeathsDown()"><i
+                            class="fa fa-arrow-down transform hover:scale-110"></i></span>
+                </th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <span *ngIf="(covidData.statewise| statesearch:state) as result">
+
+                <div *ngIf="result.length==0" class="border">
+                    <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-3" role="alert">
+                        <p class="font-bold">No State Found</p>
+                    </div>
+                </div>
+                <tr class="row" id="state" *ngFor="let state of result;let i=index;">
+                    <ng-container *ngIf="state.statecode!='TT'">
+                        <td class="col-sm-1 text-center" id="index">
+                            {{i}}.
+                        </td>
+                        <td class="col-sm-3" id="statename">
+                            <a class="text-blue-600" routerLink="/district"
+                                (click)="setState(state.state,state.statecode)">{{state.state}}</a>
+                            ({{state.statecode}})
+                        </td>
+                        <td class="col-sm-2 text-center">
+                            <span class="statusType hidden">Confirmed : </span>
+                            <ng-template [ngIf]="state.confirmed>0" [ngIfElse]="elsePart">
+                                {{state.confirmed}}&nbsp;
+                            </ng-template>
+                            <ng-template #elsePart>-</ng-template>
+
+                            <span class="text-danger" style="font-size: 13px;" *ngIf="state.deltaconfirmed>0">
+                                <i class="fa fa-arrow-up"></i> {{state.deltaconfirmed}}
+                            </span>
+                        </td>
+                        <td class="col-sm-2 text-center">
+                            <span class="statusType hidden">Active : </span>
+                            <ng-template [ngIf]="state.active>0" [ngIfElse]="elsePart">
+                                {{state.active}}&nbsp;
+                            </ng-template>
+                            <ng-template #elsePart>-</ng-template>
+                        </td>
+                        <td class="col-sm-2 text-center">
+                            <span class="statusType hidden">Recovered : </span>
+                            <ng-template [ngIf]="state.recovered>0" [ngIfElse]="elsePart">
+                                {{state.recovered}}&nbsp;
+                            </ng-template>
+                            <ng-template #elsePart>-</ng-template>
+
+                            <span class="text-success" style="font-size: 12px;" *ngIf="state.deltarecovered>0">
+                                <i class="fa fa-arrow-up"></i> {{state.deltarecovered}}
+                            </span>
+                        </td>
+                        <td class="col-sm-2 text-center">
+                            <span class="statusType hidden">Deaths : </span>
+                            <ng-template [ngIf]="state.deaths>0" [ngIfElse]="elsePart">
+                                {{state.deaths}}&nbsp;
+                            </ng-template>
+                            <ng-template #elsePart>-</ng-template>
+
+                            <span class="text-danger" style="font-size: 13px;" *ngIf="state.deltadeaths>0">
+                                <i class="fa fa-arrow-up"></i> {{state.deltadeaths}}
+                            </span>
+                        </td>
+                    </ng-container>
+                </tr>
+            </span>
+        </tbody>
+    </table>
+</div>
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>

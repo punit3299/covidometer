@@ -1,0 +1,80 @@
+<div class="form-group xl:w-1/4 w-1/2 mx-auto my-4">
+    <input type="text" class="search form-control" placeholder="Search Your District" [(ngModel)]="district">
+</div>
+
+<span class="counter pull-right"></span>
+<table class="table table-hover w-75 mx-auto results mt-4">
+    <thead>
+        <tr class="row">
+            <th class="col-sm-1 text-center">#</th>
+            <th class="col-sm-3">
+                <span class="hover:opacity-75">District</span>
+            </th>
+            <th class="col-sm-2 text-center">
+                <span class="hover:opacity-75">Confirmed </span>
+                <span *ngIf="!flag" (click)="sortByConfirmedUp()"><i
+                        class="fa fa-arrow-up transform hover:scale-110"></i></span>
+                <span *ngIf="flag" (click)="sortByConfirmedDown()"><i
+                        class="fa fa-arrow-down transform hover:scale-110"></i></span>
+            </th>
+            <th class="col-sm-2 text-center">
+                <span class="hover:opacity-75">Active </span>
+                <span *ngIf="!flag" (click)="sortByActiveUp()"><i
+                        class="fa fa-arrow-up transform hover:scale-110"></i></span>
+                <span *ngIf="flag" (click)="sortByActiveDown()"><i
+                        class="fa fa-arrow-down transform hover:scale-110"></i></span>
+            </th>
+            <th class="col-sm-2 text-center">
+                <span class="hover:opacity-75">Recovered </span>
+                <span *ngIf="!flag" (click)="sortByRecoveredUp()"><i
+                        class="fa fa-arrow-up transform hover:scale-110"></i></span>
+                <span *ngIf="flag" (click)="sortByRecoveredDown()"><i
+                        class="fa fa-arrow-down transform hover:scale-110"></i></span>
+            </th>
+            <th class="col-sm-2 text-center">
+                <span class="hover:opacity-75">Deaths </span>
+                <span *ngIf="!flag" (click)="sortByDeathsUp()"><i
+                        class="fa fa-arrow-up transform hover:scale-110"></i></span>
+                <span *ngIf="flag" (click)="sortByDeathsDown()"><i
+                        class="fa fa-arrow-down transform hover:scale-110"></i></span>
+            </th>
+        </tr>
+        <tr class="warning no-result">
+            <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+        </tr>
+    </thead> 
+    <tbody>
+        <span *ngIf="(districtData| districtsearch:district) as result">
+            <div *ngIf="result.length==0" class="border">
+                <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-3" role="alert">
+                    <p class="font-bold">No District Found</p>
+                </div>
+            </div>
+            <tr class="row" id="district" *ngFor="let d of result;let i=index">
+                <td class="col-sm-1 text-center" id="index">{{i+1}}.</td>
+                <td class="col-sm-3" id="districtname">{{d.district}}</td>
+                <td class="col-sm-2 text-center">
+                    <span class="statusType hidden">Confirmed : </span> {{d.confirmed}}
+                    <span class="text-danger" style="font-size: 13px;" *ngIf="d.delta.confirmed>0">
+                        <i class="fa fa-arrow-up"></i> {{d.delta.confirmed}}
+                    </span>
+                </td>
+                <td class="col-sm-2 text-center">
+                    <span class="statusType hidden">Active : </span> {{d.active}}
+                </td>
+                <td class="col-sm-2 text-center">
+                    <span class="statusType hidden">Recovered : </span> {{d.recovered}}
+                    <span class="text-success" style="font-size: 13px;" *ngIf="d.delta.recovered>0">
+                        <i class="fa fa-arrow-up"></i> {{d.delta.recovered}}
+                    </span>
+                </td>
+                <td class="col-sm-2 text-center">
+                    <span class="statusType hidden">Deaths : </span> {{d.deceased}}
+                    <span class="text-danger" style="font-size: 13px;" *ngIf="d.delta.deceased>0">
+                        <i class="fa fa-arrow-up"></i> {{d.delta.deceased}}
+                    </span>
+                </td>
+            </tr>
+        </span>
+    </tbody>
+</table>

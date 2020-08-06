@@ -1,0 +1,64 @@
+<div class="animated">
+    <h3 class="text-xl mt-4 text-center">
+        <b class="cursor-pointer hover:underline">Zone Distribution in India</b>
+    </h3>
+    <div class="row container-fluid no-gutters pt-4 mb-8">
+        <div class="col-12">
+            <ul class="nav nav-pills px-2">
+                <li *ngFor="let s of states | keyvalue">
+                    <span *ngIf="s.key!='Dadra and Nagar Haveli and Daman and Diu'">
+                        <a target="_self"
+                            class="border badge badge-light mx-2 cursor-pointer hover:opacity-75 hover:bg-gray-200 xl:text-md text-sm p-2 mb-3"
+                            (click)="setState(s.key)">{{s.key}}
+                            ({{s.value}})</a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+
+    <div class="flex flex-wrap mb-8 mt-4 mx-4">
+        <div class="xl:w-1/2 w-full">
+            <canvas id="pieChart"></canvas>
+            <h4 class="text-center mt-4" id="zone-count">
+                <b class="cursor-pointer hover:underline text-xl">Total Zones : {{zoneData.zones.length}}</b>
+            </h4>
+        </div>
+        <div class="xl:w-1/2 w-full px-4">
+            <div class="text-center text-info py-2 xl:text-lg text-md">Click on States to know district details</div>
+            <div>
+                <div class="card card-body">
+                    <input type="text" class="form-control" placeholder="Search your District"
+                        [(ngModel)]="searchText" />
+                    <br>
+                    <ng-container *ngIf="(zoneData.zones | search:searchText:currentState) as result">
+                        <ul class="nav nav-pills ml-2" *ngIf="zoneData.zones">
+                            <li *ngFor="let z of result" class="xl:text-lg text-md">
+                                <span *ngIf="z.state==currentState">
+                                    <span *ngIf="z.zone=='Red'">
+                                        <span class="badge badge-light text-danger" href=""
+                                            style="padding-bottom: 8px;background-color: rgba(255, 0, 0, 0.308);">{{z.district}}</span>
+                                    </span>
+                                    <span *ngIf="z.zone=='Green'">
+                                        <span class="badge badge-light text-success" href=""
+                                            style="padding-bottom: 8px;background-color: rgba(0, 128, 0, 0.267);">{{z.district}}</span>
+                                    </span>
+                                    <span *ngIf="z.zone=='Orange'">
+                                        <span class="badge badge-light" href=""
+                                            style="padding-bottom: 8px;color:orange;background-color: rgba(255, 166, 0, 0.281);">{{z.district}}</span>
+                                    </span>
+                                </span>
+                            </li>
+                        </ul>
+                        <div class="text-center" *ngIf="result.length==0">
+                            <h4 class="text-danger">No such District Found</h4>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>

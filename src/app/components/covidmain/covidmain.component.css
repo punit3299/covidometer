@@ -1,0 +1,115 @@
+
+.card-counter{
+    box-shadow: 2px 2px 10px #DADADA;
+    margin: 5px;
+    padding: 20px 10px;
+    background-color: #fff;
+    height: 110px;
+    border-radius: 5px;
+    transition: .3s linear all;
+  }
+
+  .card-counter:hover{
+    box-shadow: 4px 4px 20px #DADADA;
+    transition: .3s linear all;
+    opacity: 0.85;
+    cursor: pointer;
+  }
+
+  .card-counter.primary{
+    background-color: #007bff;
+    color: #FFF;
+  }
+
+  .card-counter.danger{
+    background-color: #ef5350;
+    color: #FFF;
+  }  
+
+  .card-counter.success{
+    background-color: #66bb6a;
+    color: #FFF;
+  }  
+
+  .card-counter.info{
+    background-color: #26c6da;
+    color: #FFF;
+  }  
+
+  .card-counter i{
+    font-size: 5em;
+    opacity: 0.2;
+  }
+
+  .card-counter .count-numbers{
+    font-size: 32px;
+    display: block;
+  }
+
+  .card-counter .count-name{
+    font-style: italic;
+    text-transform: capitalize;
+    opacity: 0.5;
+    display: block;
+    font-size: 18px;
+  }
+
+ /* animation - float up all elements */
+
+  .animated{
+    animation: transitionIn 0.75s;
+  }
+  @keyframes transitionIn{
+    from{
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to{
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+
+  .btn{
+    font-size: 8px;
+  }
+
+  span :hover{
+    cursor: pointer;
+  }
+
+  
+.results tr[visible='false'],
+.no-result{
+  display:none;
+}
+
+.results tr[visible='true']{
+  display:table-row;
+}
+
+.counter{
+  padding:8px; 
+  color:#ccc;
+}
+
+@media only screen and (max-width: 600px) {
+  thead {
+    display: none;
+  }
+  tr{
+    margin-top: 15%;
+  }
+  #statename{
+    text-align: center;
+  }
+  #index{
+    display: none;
+  }
+  #state{
+    border: 1px solid lightgrey;
+  }
+  .statusType{
+    display: inline;
+  }
+}
