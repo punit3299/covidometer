@@ -46,15 +46,6 @@ export class CovidmainComponent implements OnInit {
     sessionStorage.statecode=statecode;
   }
 
-  // sortByNameUp() {
-  //   this.covidData.statewise.sort((a, b) => (a.state < b.state ? -1 : 1));
-  //   this.flag = true;
-  // }
-  // sortByNameDown() {
-  //   this.covidData.statewise.sort((a, b) => (a.state > b.state ? -1 : 1));
-  //   this.flag = false;
-  // }  
-
   sortByConfirmedUp() {
     this.covidData.statewise.sort(function (a, b) { return parseInt(b.confirmed) - parseInt(a.confirmed); });
     this.flag = true;
@@ -92,7 +83,5 @@ export class CovidmainComponent implements OnInit {
     this.covidData.statewise.sort(function (a, b) { return parseInt(a.deaths) - parseInt(b.deaths); });
     this.flag = false;
   }
-
-
 
 }

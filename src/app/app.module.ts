@@ -7,7 +7,6 @@ import { HomeComponent } from './components/home/home.component';
 import {HttpClientModule} from '@angular/common/http';
 import { Covid19Component } from './components/covid19/covid19.component';
 import { CovidmainComponent } from './components/covidmain/covidmain.component';
-import { DonateComponent } from './components/donate/donate.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { DistrictComponent } from './components/district/district.component';
 import { DistricttableComponent } from './components/districttable/districttable.component';
@@ -26,7 +25,6 @@ import { NgxLoadingModule } from 'ngx-loading';
     HomeComponent,
     Covid19Component,
     CovidmainComponent,
-    DonateComponent,
     ChartComponent,
     DistrictComponent,
     DistricttableComponent,
