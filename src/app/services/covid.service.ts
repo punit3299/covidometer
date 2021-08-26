@@ -6,11 +6,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CovidService { 
 
-  url = "https://api.covid19india.org/data.json";
-  url1="https://api.covid19india.org/raw_data4.json";
-  url2="https://api.covid19india.org/v2/state_district_wise.json";
-  url3="https://api.covid19india.org/states_daily.json";
-  url4="https://api.covid19india.org/zones.json";
+  url = "https://data.covid19india.org/data.json";
+  url1="https://data.covid19india.org/raw_data4.json";
+  url2="https://data.covid19india.org/v2/state_district_wise.json";
+  url3="https://data.covid19india.org/states_daily.json";
+  url4="https://data.covid19india.org/zones.json";
   
   constructor(private http:HttpClient) { }
 
